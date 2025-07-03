@@ -16,5 +16,4 @@ run `app.py`
 - `lin.html` - linear equations (2 variables)  
 - `quad.html` - quadratic equation solver  
 - `app.py` - flask app  
-- `requirements.txt` - dependencies
 
