@@ -1,12 +1,7 @@
 from flask import Flask , request , render_template
 import numpy as np
 
-
-
 app = Flask(__name__)
-
-
-
 
 @app.route('/')
 def hello():
@@ -19,15 +14,23 @@ def linear_eq_in_2(x ,y , z):
     Dx= np.linalg.det(np.transpose(np.array([z,y])))
     Dy= np.linalg.det(np.transpose(np.array([x,z])))
 
-    a = round(Dx/D)
-    b = round(Dy/D)
-    return [a ,b]    
+    try :
+        a = round(Dx/D)
+        b = round(Dy/D)
+        return [a ,b]
+    except ZeroDivisionError:
+        print("Zero Division Error Occured!!!")
+        return ["NA", "NA"]
 
 def quadratic(a,b,c):
-    x1 = (-b + (b**2-4*a*c)**(1/2))/(2*a)
-    x2 = (-b - (b**2-4*a*c)**(1/2))/(2*a)
+    try :
+        x1 = (-b + (b**2-4*a*c)**(1/2))/(2*a)
+        x2 = (-b - (b**2-4*a*c)**(1/2))/(2*a)
 
-    return [x1 , x2]
+        return [x1 , x2]
+    except ZeroDivisionError:
+        print("Zero Division Error Occured!!!")
+        return ["NA", "NA"]
 
 
 @app.route("/lin" ,methods = ["POST" , "GET"])
